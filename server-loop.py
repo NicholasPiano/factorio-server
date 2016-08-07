@@ -9,6 +9,8 @@ import os
 from os.path import exists, join
 import json
 import time
+from threading  import Thread
+from Queue import Queue, Empty
 
 # vars
 download_url = 'https://www.factorio.com/download-headless/experimental'
@@ -106,37 +108,48 @@ while True:
 		call('sudo {} --create {}'.format(execute_path.format(*current_version), join(store_path.format(*current_version), 'saves', game_name_zip)), shell=True, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, universal_newlines=True)
 
 	# 5. run server and pipe to log
-	server_process = Popen([execute_path.format(*current_version), '--start-server', join(store_path.format(*current_version), 'saves', game_name_zip)], bufsize=1, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, universal_newlines=True)
+	def enqueue_output(out, queue):
+		for line in iter(out.readline, b''):
+			queue.put(line)
+		out.close()
+
+	server_process = Popen([execute_path.format(*current_version), '--start-server', join(store_path.format(*current_version), 'saves', game_name_zip)], bufsize=1, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, universal_newlines=True, close_fds=True)
 	print('4. starting server process {}'.format(server_process.pid))
 	player_join = False
 	running = True
+	q = Queue()
+	t = Thread(target=enqueue_output, args=(server_process.stdout, q))
+	t.daemon = True # thread dies with the program
+	t.start()
 
 	# 6. enter check log loop
 	line = ''
 	while running:
-		previous_line = line
-		line = server_process.stdout.readline()
-		if line and line != previous_line and server_process.poll() is None:
-			# a. if player join received, toggle player join
-			player = re.search(player_join_marker, line)
-			if player is not None and player.group(1) != '0' and player.group(1) not in peers:
-				print('player_join')
-				player_join = True
+		try:
+			line = q.get_nowait() # or q.get(timeout=.1)
+		except Empty:
+			print('no output yet')
+		else: # got line
+			if server_process.poll() is None:
+				# a. if player join received, toggle player join
+				player = re.search(player_join_marker, line)
+				if player is not None and player.group(1) != '0' and player.group(1) not in peers:
+					print('player_join')
+					player_join = True
 
-			peer = re.search(peer_marker, line)
-			if peer is not None and peer.group(1) not in peers:
-				peers[peer.group(1)] = peer.group(2)
-				print('peers', peers)
+				peer = re.search(peer_marker, line)
+				if peer is not None and peer.group(1) not in peers:
+					peers[peer.group(1)] = peer.group(2)
+					print('peers', peers)
 
-			# b. if no active players received, and player join is true, send SIGINT to server process, set player join to false
-			if re.search(no_active_users_marker, line) is not None and player_join:
-				print('no active users')
-				time.sleep(5) # allow time for last user to disconnect
-				server_process.kill()
-				running = False
+				# b. if no active players received, and player join is true, send SIGINT to server process, set player join to false
+				if re.search(no_active_users_marker, line) is not None and player_join:
+					print('no active users')
+					time.sleep(5) # allow time for last user to disconnect
+					server_process.kill()
+					running = False
 
 		# c. if time is up and there is only the server peer, restart.
-		print(time.time(), start_time, time.time() - start_time, player_join)
 		if time.time() - start_time > 10 and not player_join:
 			print('time is up, restarting.')
 			server_process.kill()
