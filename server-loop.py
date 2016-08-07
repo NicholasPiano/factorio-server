@@ -19,18 +19,17 @@ download_target = '/home/npiano/factorio-download/{}.{}.{}/'
 file_target = '{}.{}.{}.tar.gz'
 store_path = '/opt/factorio/{}.{}.{}/'
 execute_path = join(store_path, 'bin/x64/factorio')
-args = {}
 peer_marker = r'Received peer info for peer\(([0-9]+)\) username\((.+)\)'
 player_join_marker = r'adding peer\(([0-9]+)\)'
 no_active_users_marker = r'removing peer\(1\) success\(true\)'
-new_game = False
 game_name = ''
-peers = {}
 
 # main loop
 while True:
 	# set vars
 	new_version_available = False
+	peers = {}
+	args = {}
 
 	# 1. Git pull and load args.json
 	print('1. pulling from git')
@@ -117,13 +116,13 @@ while True:
 			if line:
 				# a. if player join received, toggle player join
 				player = re.search(player_join_marker, line)
-				if player is not None and player.group(0) != 0:
+				if player is not None and player.group(1) != '0' and player.group(1) not in peers:
 					print('player_join')
 					player_join = True
 
 				peer = re.search(peer_marker, line)
-				if peer is not None:
-					peers[peer.group(0)] = peer.group(1)
+				if peer is not None and peer.group(1) not in peers:
+					peers[peer.group(1)] = peer.group(2)
 					print('peers', peers)
 
 				# b. if no active players received, and player join is true, send SIGINT to server process, set player join to false
@@ -132,16 +131,16 @@ while True:
 					server_process.kill()
 					running = False
 
-		# c. git pull, if game name arg has changed, send SIGINT
-		call('git pull', shell=True)
-		with open('./args.json') as args_file:
-			args = json.load(args_file)
+			# c. git pull, if game name arg has changed, send SIGINT
+			call('git pull --quiet', shell=True)
+			with open('./args.json') as args_file:
+				args = json.load(args_file)
 
-		previous_game_name = game_name
-		game_name = args['game']['name']
-		if game_name != previous_game_name:
-			print('new game')
-			server_process.kill()
-			running = False
+			previous_game_name = game_name
+			game_name = args['game']['name']
+			if game_name != previous_game_name:
+				print('new game')
+				server_process.kill()
+				running = False
 
 	# 10. repeat.
