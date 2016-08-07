@@ -1,5 +1,6 @@
 
 # import
+import subprocess
 from subprocess import call, Popen
 from lxml import html
 import requests
@@ -17,7 +18,7 @@ current_version = (0, 13, 14)
 download_target = '/home/npiano/factorio-download/{}.{}.{}/'
 file_target = '{}.{}.{}.tar.gz'
 store_path = '/opt/factorio/{}.{}.{}/'
-execute_path = join(store_path, 'factorio/bin/x64/factorio')
+execute_path = join(store_path, 'bin/x64/factorio')
 args = {}
 player_join_marker = r'Received peer info for peer\([0-9]+\) username\(.+\)'
 no_active_users_marker = r'removing peer\(1\) success\(true\)'
@@ -89,13 +90,13 @@ while True:
 
 	#	3. checks args.json for savefile name / 'new'.
 	# 4. if 'new' in args, create new game
-	new_game = bool(args['game']['new'])
+	previous_game_name = game_name
 	game_name = args['game']['name']
-	if new_game:
+	if game_name != previous_game_name:
 		call('sudo {} --create {}'.format(execute_path.format(*current_version), join(store_path.format(*current_version), 'saves', game_name)), shell=True)
 
 	# 5. run server and pipe to log
-	server_process = Popen([execute_path.format(*current_version), ], bufsize=1, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, universal_newlines=True)
+	server_process = Popen([execute_path.format(*current_version), '--start-server', join(store_path.format(*current_version), 'saves', game_name)], bufsize=1, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, universal_newlines=True)
 	player_join = False
 
 	# 6. enter check log loop
@@ -103,11 +104,14 @@ while True:
 		line = server_process.stdout.readline()
 		if line:
 			# a. if player join received, toggle player join
-			if re.search(player_join_marker, line) is not None:
+			player = re.search(player_join_marker, line)
+			if player is not None:
 				player_join = True
+				print('player_join: {}'.format(player.group(1)))
 
 			# b. if no active players received, and player join is true, send SIGINT to server process, set player join to false
 			if re.search(no_active_users_marker, line) is not None and player_join:
+				print('no active users')
 				server_process.kill()
 
 		# c. git pull, if game name arg has changed, send SIGINT
@@ -115,10 +119,10 @@ while True:
 		with open('./args.json') as args_file:
 			args = json.load(args_file)
 
-		new_game = bool(args['game']['new'])
 		previous_game_name = game_name
 		game_name = args['game']['name']
-		if new_game and game_name != previous_game_name:
+		if game_name != previous_game_name:
+			print('new game')
 			server_process.kill()
 
 	# 10. repeat.
