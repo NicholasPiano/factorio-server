@@ -6,7 +6,7 @@ from lxml import html
 import requests
 import re
 import os
-from os.path import exists, join
+from os.path import exists, join, getmtime
 import json
 import time
 from threading  import Thread
@@ -155,4 +155,18 @@ while True:
 			server_process.kill()
 			running = False
 
-	# 10. repeat.
+	# 10. get most recent autosave and set as save file.
+	print('5. saving')
+	if time.time() - start_time > 600 and player_join:
+		paths = ['_autosave1.zip','_autosave2.zip','_autosave3.zip']
+		mtimes = [getmtime(join(store_path.format(*current_version), 'saves', path)) for path in paths]
+		path = paths.index(min(mtimes))
+
+		full_path = join(store_path.format(*current_version), 'saves', path)
+		backup_path = join(store_path.format(*current_version), 'saves', '_{}.zip'.format(game_name))
+		game_path = join(store_path.format(*current_version), 'saves', '{}.zip'.format(game_name))
+
+		call('sudo cp {} {}'.format(game_path, backup_path), shell=True) # backup
+		call('sudo cp {} {}'.format(full_path, game_path), shell=True) # save
+
+	# 11. aaand repeat.
