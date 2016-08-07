@@ -112,28 +112,28 @@ while True:
 	running = True
 
 	# 6. enter check log loop
+	line = ''
 	while running:
-		while server_process.poll() is None:
-			print('looooooop')
-			line = server_process.stdout.readline()
-			if line:
-				# a. if player join received, toggle player join
-				player = re.search(player_join_marker, line)
-				if player is not None and player.group(1) != '0' and player.group(1) not in peers:
-					print('player_join')
-					player_join = True
+		previous_line = line
+		line = server_process.stdout.readline()
+		if line and line != previous_line and server_process.poll() is not None:
+			# a. if player join received, toggle player join
+			player = re.search(player_join_marker, line)
+			if player is not None and player.group(1) != '0' and player.group(1) not in peers:
+				print('player_join')
+				player_join = True
 
-				peer = re.search(peer_marker, line)
-				if peer is not None and peer.group(1) not in peers:
-					peers[peer.group(1)] = peer.group(2)
-					print('peers', peers)
+			peer = re.search(peer_marker, line)
+			if peer is not None and peer.group(1) not in peers:
+				peers[peer.group(1)] = peer.group(2)
+				print('peers', peers)
 
-				# b. if no active players received, and player join is true, send SIGINT to server process, set player join to false
-				if re.search(no_active_users_marker, line) is not None and player_join:
-					print('no active users')
-					time.sleep(5) # allow time for last user to disconnect
-					server_process.kill()
-					running = False
+			# b. if no active players received, and player join is true, send SIGINT to server process, set player join to false
+			if re.search(no_active_users_marker, line) is not None and player_join:
+				print('no active users')
+				time.sleep(5) # allow time for last user to disconnect
+				server_process.kill()
+				running = False
 
 		# c. if time is up and there is only the server peer, restart.
 		# if time.time() - start_time > 10 and not player_join:
