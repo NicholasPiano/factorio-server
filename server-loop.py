@@ -131,16 +131,16 @@ while True:
 					server_process.kill()
 					running = False
 
-			# c. git pull, if game name arg has changed, send SIGINT
-			call('git pull --quiet', shell=True)
-			with open('./args.json') as args_file:
-				args = json.load(args_file)
+		# c. git pull, if game name arg has changed, send SIGINT
+		call('git pull --quiet', shell=True)
+		with open('./args.json') as args_file:
+			args = json.load(args_file)
 
-			previous_game_name = game_name
-			game_name = args['game']['name']
-			if game_name != previous_game_name:
-				print('new game')
-				server_process.kill()
-				running = False
+		previous_game_name = game_name
+		game_name = args['game']['name']
+		if game_name != previous_game_name:
+			print('new game')
+			server_process.kill()
+			running = False
 
 	# 10. repeat.
