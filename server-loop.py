@@ -31,12 +31,14 @@ while True:
 	new_version_available = False
 
 	# 1. Git pull and load args.json
+	print('1. pulling from git')
 	call('git pull', shell=True)
 	with open('./args.json') as args_file:
 		args = json.load(args_file)
 
 	# 2. check new software available by parsing download page
 	######################################################################### CHECK NEW VERSION
+	print('2. checking for new software')
 	page = requests.get(download_url)
 	tree = html.fromstring(page.content)
 
@@ -53,6 +55,7 @@ while True:
 			current_version = version_tuple
 
 	if new_version_available:
+		print('2... new version available')
 		new_version_available = False
 
 		# download from url
@@ -79,6 +82,7 @@ while True:
 		call('sudo mv {}/* {}'.format(extract_target, store_target), shell=True)
 
 		# b. copy all savefiles to LATEST/saves
+		print('2... copying saves')
 		if exists(store_path.format(*previous_version)) and exists(join(store_path.format(*previous_version), 'saves')):
 			save_target = join(store_path.format(*current_version), 'saves')
 			if not exists(save_target):
@@ -92,23 +96,25 @@ while True:
 	# 4. if 'new' in args, create new game
 	previous_game_name = game_name
 	game_name = args['game']['name']
+	print('3. game name: {}'.format(game_name))
 	if game_name != previous_game_name:
-		call('sudo {} --create {}'.format(execute_path.format(*current_version), join(store_path.format(*current_version), 'saves', game_name)), shell=True)
+		print('3... new game: {}'.format(game_name))
+		call('sudo {} --create {}'.format(execute_path.format(*current_version), join(store_path.format(*current_version), 'saves', game_name)), shell=True, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, universal_newlines=True)
 
 	# 5. run server and pipe to log
 	server_process = Popen([execute_path.format(*current_version), '--start-server', join(store_path.format(*current_version), 'saves', game_name)], bufsize=1, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, universal_newlines=True)
+	print('4. starting server process {}'.format(server_process.pid))
 	player_join = False
 
 	# 6. enter check log loop
 	while server_process.poll() is None:
 		line = server_process.stdout.readline()
-		print(line, server_process.pid)
 		if line:
 			# a. if player join received, toggle player join
 			player = re.search(player_join_marker, line)
 			if player is not None:
-				player_join = True
 				print('player_join: {}'.format(player.group(1)))
+				player_join = True
 
 			# b. if no active players received, and player join is true, send SIGINT to server process, set player join to false
 			if re.search(no_active_users_marker, line) is not None and player_join:
@@ -116,14 +122,14 @@ while True:
 				server_process.kill()
 
 		# c. git pull, if game name arg has changed, send SIGINT
-		call('git pull', shell=True)
-		with open('./args.json') as args_file:
-			args = json.load(args_file)
-
-		previous_game_name = game_name
-		game_name = args['game']['name']
-		if game_name != previous_game_name:
-			print('new game')
-			server_process.kill()
+		# call('git pull', shell=True)
+		# with open('./args.json') as args_file:
+		# 	args = json.load(args_file)
+		#
+		# previous_game_name = game_name
+		# game_name = args['game']['name']
+		# if game_name != previous_game_name:
+		# 	print('new game')
+		# 	server_process.kill()
 
 	# 10. repeat.
