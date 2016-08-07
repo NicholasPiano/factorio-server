@@ -75,7 +75,7 @@ while True:
 		if not exists(store_target):
 			os.makedirs(store_target)
 
-		call('sudo mv {} {}'.format(extract_target, store_target), shell=True)
+		call('sudo mv {}/* {}'.format(extract_target, store_target), shell=True)
 
 		# b. copy all savefiles to LATEST/saves
 		if exists(store_path.format(*previous_version)) and exists(join(store_path.format(*previous_version), 'saves')):

@@ -1,5 +1,6 @@
 {
 	"game": {
-		"new": "True"
+		"new": "True",
+		"name": "test2"
 	}
 }
