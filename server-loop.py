@@ -115,7 +115,7 @@ while True:
 			if line:
 				# a. if player join received, toggle player join
 				player = re.search(player_join_marker, line)
-				if player is not None and player.group(0) !== '0':
+				if player is not None and player.group(0) != '0':
 					print('player_join: {}'.format(player.group(1)))
 					player_join = True
 
