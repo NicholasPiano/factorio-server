@@ -134,6 +134,7 @@ while True:
 					running = False
 
 				# c. if time is up and there is only the server peer, restart.
+				print(time.time())
 				if time.time() - start_time > 10 and not player_join:
 					print('time is up, restarting.')
 					server_process.kill()
