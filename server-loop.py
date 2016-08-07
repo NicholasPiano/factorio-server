@@ -156,17 +156,17 @@ while True:
 			running = False
 
 	# 10. get most recent autosave and set as save file.
-	# print('5. saving')
-	# if time.time() - start_time > 120 and player_join:
-	# 	paths = [f for f in ['_autosave1.zip','_autosave2.zip','_autosave3.zip'] if exists(join(store_path.format(*current_version), 'saves', f))]
-	# 	mtimes = [getmtime(join(store_path.format(*current_version), 'saves', path)) for path in paths]
-	# 	path = paths.index(mtimes.index(max(mtimes)))
-	#
-	# 	full_path = join(store_path.format(*current_version), 'saves', path)
-	# 	backup_path = join(store_path.format(*current_version), 'saves', '_{}.zip'.format(game_name))
-	# 	game_path = join(store_path.format(*current_version), 'saves', '{}.zip'.format(game_name))
-	#
-	# 	call('sudo cp {} {}'.format(game_path, backup_path), shell=True) # backup
-	# 	call('sudo cp {} {}'.format(full_path, game_path), shell=True) # save
+	print('5. saving')
+	if time.time() - start_time > 120 and player_join:
+		paths = [f for f in ['_autosave1.zip','_autosave2.zip','_autosave3.zip'] if exists(join(store_path.format(*current_version), 'saves', f))]
+		mtimes = [getmtime(join(store_path.format(*current_version), 'saves', path)) for path in paths]
+		path = paths[mtimes.index(max(mtimes))]
+
+		full_path = join(store_path.format(*current_version), 'saves', path)
+		backup_path = join(store_path.format(*current_version), 'saves', '_{}.zip'.format(game_name))
+		game_path = join(store_path.format(*current_version), 'saves', '{}.zip'.format(game_name))
+
+		call('sudo cp {} {}'.format(game_path, backup_path), shell=True) # backup
+		call('sudo cp {} {}'.format(full_path, game_path), shell=True) # save
 
 	# 11. aaand repeat.
