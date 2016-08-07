@@ -102,6 +102,7 @@ while True:
 	# 6. enter check log loop
 	while server_process.poll() is None:
 		line = server_process.stdout.readline()
+		print(line, server_process.pid)
 		if line:
 			# a. if player join received, toggle player join
 			player = re.search(player_join_marker, line)
