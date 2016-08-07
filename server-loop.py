@@ -142,5 +142,6 @@ while True:
 		if game_name != previous_game_name:
 			print('new game')
 			server_process.kill()
+			running = False
 
 	# 10. repeat.
