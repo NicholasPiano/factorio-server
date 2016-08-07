@@ -114,6 +114,7 @@ while True:
 	# 6. enter check log loop
 	while running:
 		while server_process.poll() is None:
+			print('looooooop')
 			line = server_process.stdout.readline()
 			if line:
 				# a. if player join received, toggle player join
@@ -130,14 +131,14 @@ while True:
 				# b. if no active players received, and player join is true, send SIGINT to server process, set player join to false
 				if re.search(no_active_users_marker, line) is not None and player_join:
 					print('no active users')
+					time.sleep(5) # allow time for last user to disconnect
 					server_process.kill()
 					running = False
 
 		# c. if time is up and there is only the server peer, restart.
-		print(time.time())
-		if time.time() - start_time > 10 and not player_join:
-			print('time is up, restarting.')
-			server_process.kill()
-			running = False
+		# if time.time() - start_time > 10 and not player_join:
+		# 	print('time is up, restarting.')
+		# 	server_process.kill()
+		# 	running = False
 
 	# 10. repeat.
