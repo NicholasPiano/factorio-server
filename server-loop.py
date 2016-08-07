@@ -8,6 +8,7 @@ import re
 import os
 from os.path import exists, join
 import json
+import time
 
 # vars
 download_url = 'https://www.factorio.com/download-headless/experimental'
@@ -26,6 +27,7 @@ game_name = None
 
 # main loop
 while True:
+	start_time = time.time()
 	# set vars
 	new_version_available = False
 	peers = {}
@@ -128,6 +130,12 @@ while True:
 				# b. if no active players received, and player join is true, send SIGINT to server process, set player join to false
 				if re.search(no_active_users_marker, line) is not None and player_join:
 					print('no active users')
+					server_process.kill()
+					running = False
+
+				# c. if time is up and there is only the server peer, restart.
+				if time.time() - start_time > 10 and not player_join:
+					print('time is up, restarting.')
 					server_process.kill()
 					running = False
 
