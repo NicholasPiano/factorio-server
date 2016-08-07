@@ -37,7 +37,7 @@ while True:
 
 	# 1. Git pull and load args.json
 	print('1. pulling from git')
-	call('git pull', shell=True)
+	call('sudo git pull', shell=True)
 	with open('./args.json') as args_file:
 		args = json.load(args_file)
 
