@@ -30,7 +30,7 @@ while True:
 	new_version_available = False
 
 	# 1. Git pull and load args.json
-	call('git pull')
+	call('git pull', shell=True)
 	with open('./args.json') as args_file:
 		args = json.load(args_file)
 
@@ -111,7 +111,7 @@ while True:
 				server_process.kill()
 
 		# c. git pull, if game name arg has changed, send SIGINT
-		call('git pull')
+		call('git pull', shell=True)
 		with open('./args.json') as args_file:
 			args = json.load(args_file)
 
