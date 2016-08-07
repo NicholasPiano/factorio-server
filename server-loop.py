@@ -132,7 +132,7 @@ while True:
 					server_process.kill()
 					running = False
 
-		c. git pull, if game name arg has changed, send SIGINT
+		# c. git pull, if game name arg has changed, send SIGINT
 		call('git pull', shell=True)
 		with open('./args.json') as args_file:
 			args = json.load(args_file)
