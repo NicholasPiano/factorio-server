@@ -24,7 +24,7 @@ store_path = '/opt/factorio/{}.{}.{}/'
 execute_path = join(store_path, 'bin/x64/factorio')
 peer_marker = r'Received peer info for peer\(([0-9]+)\) username\((.+)\)'
 player_join_marker = r'adding peer\(([0-9]+)\) address\(.+\) sending connectionAccept\(true\)'
-no_active_users_marker = r'removing peer\(1\) success\(true\)'
+no_active_users_marker = r'processed PlayerLeaveGame peerID\(1\)'
 game_name = None
 
 # main loop
