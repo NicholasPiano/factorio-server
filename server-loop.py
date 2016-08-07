@@ -20,10 +20,12 @@ file_target = '{}.{}.{}.tar.gz'
 store_path = '/opt/factorio/{}.{}.{}/'
 execute_path = join(store_path, 'bin/x64/factorio')
 args = {}
-player_join_marker = r'Received peer info for peer\(([0-9]+)\) username\((.+)\)'
+peer_marker = r'Received peer info for peer\(([0-9]+)\) username\((.+)\)'
+player_join_marker = r'adding peer\(([0-9]+)\)'
 no_active_users_marker = r'removing peer\(1\) success\(true\)'
 new_game = False
 game_name = ''
+peers = {}
 
 # main loop
 while True:
@@ -115,9 +117,14 @@ while True:
 			if line:
 				# a. if player join received, toggle player join
 				player = re.search(player_join_marker, line)
-				if player is not None and player.group(0) != '0':
-					print('player_join: {}'.format(player.group(1)))
+				if player is not None and player.group(0) != 0:
+					print('player_join')
 					player_join = True
+
+				peer = re.search(peer_marker, line)
+				if peer is not None:
+					peers[peer.group(0)] = peer.group(1)
+					print('peers', peers)
 
 				# b. if no active players received, and player join is true, send SIGINT to server process, set player join to false
 				if re.search(no_active_users_marker, line) is not None and player_join:
@@ -125,15 +132,15 @@ while True:
 					server_process.kill()
 					running = False
 
-		# c. git pull, if game name arg has changed, send SIGINT
-		# call('git pull', shell=True)
-		# with open('./args.json') as args_file:
-		# 	args = json.load(args_file)
-		#
-		# previous_game_name = game_name
-		# game_name = args['game']['name']
-		# if game_name != previous_game_name:
-		# 	print('new game')
-		# 	server_process.kill()
+		c. git pull, if game name arg has changed, send SIGINT
+		call('git pull', shell=True)
+		with open('./args.json') as args_file:
+			args = json.load(args_file)
+
+		previous_game_name = game_name
+		game_name = args['game']['name']
+		if game_name != previous_game_name:
+			print('new game')
+			server_process.kill()
 
 	# 10. repeat.
