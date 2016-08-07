@@ -114,6 +114,7 @@ while True:
 		call('git pull')
 		with open('./args.json') as args_file:
 			args = json.load(args_file)
+
 		new_game = bool(args['game']['new'])
 		previous_game_name = game_name
 		game_name = args['game']['name']
