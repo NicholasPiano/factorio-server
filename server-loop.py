@@ -116,6 +116,7 @@ while True:
 	while running:
 		previous_line = line
 		line = server_process.stdout.readline()
+		print(line)
 		if line and line != previous_line and server_process.poll() is not None:
 			# a. if player join received, toggle player join
 			player = re.search(player_join_marker, line)
