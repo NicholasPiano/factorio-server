@@ -128,7 +128,7 @@ while True:
 		try:
 			line = q.get_nowait() # or q.get(timeout=.1)
 		except Empty:
-			print('no output yet')
+			pass
 		else: # got line
 			if server_process.poll() is None:
 				# a. if player join received, toggle player join
@@ -150,7 +150,7 @@ while True:
 					running = False
 
 		# c. if time is up and there is only the server peer, restart.
-		if time.time() - start_time > 10 and not player_join:
+		if time.time() - start_time > 600 and not player_join:
 			print('time is up, restarting.')
 			server_process.kill()
 			running = False
