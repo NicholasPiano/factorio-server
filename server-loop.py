@@ -20,7 +20,7 @@ file_target = '{}.{}.{}.tar.gz'
 store_path = '/opt/factorio/{}.{}.{}/'
 execute_path = join(store_path, 'bin/x64/factorio')
 args = {}
-player_join_marker = r'Received peer info for peer\([0-9]+\) username\(.+\)'
+player_join_marker = r'Received peer info for peer\(([0-9]+)\) username\((.+)\)'
 no_active_users_marker = r'removing peer\(1\) success\(true\)'
 new_game = False
 game_name = ''
@@ -112,11 +112,10 @@ while True:
 	while running:
 		while server_process.poll() is None:
 			line = server_process.stdout.readline()
-			print(line)
 			if line:
 				# a. if player join received, toggle player join
 				player = re.search(player_join_marker, line)
-				if player is not None:
+				if player is not None and player.group(0) !== '0':
 					print('player_join: {}'.format(player.group(1)))
 					player_join = True
 
