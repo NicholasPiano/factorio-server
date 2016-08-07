@@ -1,6 +1,6 @@
 
 # import
-from subprocess import call
+from subprocess import call, Popen
 from lxml import html
 import requests
 import re
@@ -19,10 +19,13 @@ file_target = '{}.{}.{}.tar.gz'
 store_path = '/opt/factorio/{}.{}.{}/'
 execute_path = join(store_path, 'factorio/bin/x64/factorio')
 args = {}
+player_join_marker = r'Received peer info for peer\([0-9]+\) username\(.+\)'
+no_active_users_marker = r'removing peer\(1\) success\(true\)'
+new_game = False
+game_name = ''
 
 # main loop
-# while True:
-if True:
+while True:
 	# set vars
 	new_version_available = False
 
@@ -87,14 +90,34 @@ if True:
 	#	3. checks args.json for savefile name / 'new'.
 	# 4. if 'new' in args, create new game
 	new_game = bool(args['game']['new'])
+	game_name = args['game']['name']
 	if new_game:
-		call('sudo {} --create {}'.format(), shell=True)
+		call('sudo {} --create {}'.format(execute_path.format(*current_version), join(store_path.format(*current_version), 'saves', game_name)), shell=True)
 
 	# 5. run server and pipe to log
+	server_process = Popen([execute_path.format(*current_version), ], bufsize=1, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, universal_newlines=True)
+	player_join = False
+
 	# 6. enter check log loop
-	# 	a. if player join received, toggle player join
-	# 	b. if no active players received, and player join is true, send SIGINT to server process, set player join to false
-	# 	c. git pull, if game name arg has changed, send SIGINT
-	# 9. wait for shutdown and exit log loop
-	# 10. update server log and commit changes
-	# 11. repeat.
+	while server_process.poll() is None:
+		line = server_process.stdout.readline()
+		if line:
+			# a. if player join received, toggle player join
+			if re.search(player_join_marker, line) is not None:
+				player_join = True
+
+			# b. if no active players received, and player join is true, send SIGINT to server process, set player join to false
+			if re.search(no_active_users_marker, line) is not None and player_join:
+				server_process.kill()
+
+		# c. git pull, if game name arg has changed, send SIGINT
+		call('git pull')
+		with open('./args.json') as args_file:
+			args = json.load(args_file)
+		new_game = bool(args['game']['new'])
+		previous_game_name = game_name
+		game_name = args['game']['name']
+		if new_game and game_name != previous_game_name:
+			server_process.kill()
+
+	# 10. repeat.
