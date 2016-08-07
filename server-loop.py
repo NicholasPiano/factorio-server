@@ -157,7 +157,7 @@ while True:
 
 	# 10. get most recent autosave and set as save file.
 	print('5. saving')
-	if time.time() - start_time > 600 and player_join:
+	if time.time() - start_time > 120 and player_join:
 		paths = ['_autosave1.zip','_autosave2.zip','_autosave3.zip']
 		mtimes = [getmtime(join(store_path.format(*current_version), 'saves', path)) for path in paths]
 		path = paths.index(min(mtimes))
