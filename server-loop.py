@@ -116,7 +116,6 @@ while True:
 	while running:
 		previous_line = line
 		line = server_process.stdout.readline()
-		print(line)
 		if line and line != previous_line and server_process.poll() is None:
 			# a. if player join received, toggle player join
 			player = re.search(player_join_marker, line)
@@ -137,9 +136,9 @@ while True:
 				running = False
 
 		# c. if time is up and there is only the server peer, restart.
-		# if time.time() - start_time > 10 and not player_join:
-		# 	print('time is up, restarting.')
-		# 	server_process.kill()
-		# 	running = False
+		if time.time() - start_time > 10 and not player_join:
+			print('time is up, restarting.')
+			server_process.kill()
+			running = False
 
 	# 10. repeat.
