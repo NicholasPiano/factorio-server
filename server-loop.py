@@ -99,10 +99,10 @@ while True:
 	print('3. game name: {}'.format(game_name))
 	if game_name != previous_game_name:
 		print('3... new game: {}'.format(game_name))
-		call('sudo {} --create {}'.format(execute_path.format(*current_version), join(store_path.format(*current_version), 'saves', game_name)), shell=True, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, universal_newlines=True)
+		call('sudo {} --create {}'.format(execute_path.format(*current_version), join(store_path.format(*current_version), 'saves', '{}.zip'.format(game_name)), shell=True, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, universal_newlines=True)
 
 	# 5. run server and pipe to log
-	server_process = Popen([execute_path.format(*current_version), '--start-server', join(store_path.format(*current_version), 'saves', game_name)], bufsize=1, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, universal_newlines=True)
+	server_process = Popen([execute_path.format(*current_version), '--start-server', join(store_path.format(*current_version), 'saves', '{}.zip'.format(game_name))], bufsize=1, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, universal_newlines=True)
 	print('4. starting server process {}'.format(server_process.pid))
 	player_join = False
 	running = True
