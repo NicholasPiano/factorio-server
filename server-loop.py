@@ -22,7 +22,7 @@ execute_path = join(store_path, 'bin/x64/factorio')
 peer_marker = r'Received peer info for peer\(([0-9]+)\) username\((.+)\)'
 player_join_marker = r'adding peer\(([0-9]+)\) address\(.+\) sending connectionAccept\(true\)'
 no_active_users_marker = r'removing peer\(1\) success\(true\)'
-game_name = ''
+game_name = None
 
 # main loop
 while True:
@@ -99,7 +99,7 @@ while True:
 	game_name = args['game']['name']
 	game_name_zip = '{}.zip'.format(game_name)
 	print('3. game name: {}'.format(game_name))
-	if game_name != previous_game_name:
+	if game_name != previous_game_name and not exists(join(store_path.format(*current_version), 'saves', game_name_zip)):
 		print('3... new game: {}'.format(game_name))
 		call('sudo {} --create {}'.format(execute_path.format(*current_version), join(store_path.format(*current_version), 'saves', game_name_zip)), shell=True, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, universal_newlines=True)
 
