@@ -105,21 +105,25 @@ while True:
 	server_process = Popen([execute_path.format(*current_version), '--start-server', join(store_path.format(*current_version), 'saves', game_name)], bufsize=1, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, universal_newlines=True)
 	print('4. starting server process {}'.format(server_process.pid))
 	player_join = False
+	running = True
 
 	# 6. enter check log loop
-	while server_process.poll() is None:
-		line = server_process.stdout.readline()
-		if line:
-			# a. if player join received, toggle player join
-			player = re.search(player_join_marker, line)
-			if player is not None:
-				print('player_join: {}'.format(player.group(1)))
-				player_join = True
+	while running:
+		while server_process.poll() is None:
+			line = server_process.stdout.readline()
+			print(line)
+			if line:
+				# a. if player join received, toggle player join
+				player = re.search(player_join_marker, line)
+				if player is not None:
+					print('player_join: {}'.format(player.group(1)))
+					player_join = True
 
-			# b. if no active players received, and player join is true, send SIGINT to server process, set player join to false
-			if re.search(no_active_users_marker, line) is not None and player_join:
-				print('no active users')
-				server_process.kill()
+				# b. if no active players received, and player join is true, send SIGINT to server process, set player join to false
+				if re.search(no_active_users_marker, line) is not None and player_join:
+					print('no active users')
+					server_process.kill()
+					running = False
 
 		# c. git pull, if game name arg has changed, send SIGINT
 		# call('git pull', shell=True)
