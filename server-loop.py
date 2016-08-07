@@ -159,7 +159,7 @@ while True:
 	print('5. saving')
 	if time.time() - start_time > 120 and player_join:
 		paths = ['_autosave1.zip','_autosave2.zip','_autosave3.zip']
-		mtimes = [getmtime(join(store_path.format(*current_version), 'saves', path)) for path in paths if exists(join(store_path.format(*current_version), 'saves', path)) else 10000000000]
+		mtimes = [(getmtime(join(store_path.format(*current_version), 'saves', path)) if exists(join(store_path.format(*current_version), 'saves', path)) else 10000000) for path in paths]
 		path = paths.index(min(mtimes))
 
 		full_path = join(store_path.format(*current_version), 'saves', path)
