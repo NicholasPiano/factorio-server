@@ -50,7 +50,6 @@ while True:
 	# a. if available, download and prepare for running
 	versions = tree.xpath('//h3/text()')
 	for version in versions:
-		print(version_template, version)
 		match_dict = re.match(version_template, version.strip()).groupdict()
 		version_tuple = int(match_dict['first']), int(match_dict['second']), int(match_dict['third'])
 		gt = sum([cv >= vt for cv, vt in zip(current_version, version_tuple)]) != 3
