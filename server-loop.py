@@ -72,7 +72,7 @@ while True:
 		if not exists(version_target):
 			os.makedirs(version_target)
 
-		call('wget --quiet -O {} {}'.format(complete_target, version_download_url), shell=True)
+		call('wget --quiet --trust-server-names --content-disposition -O {} {}'.format(complete_target, version_download_url), shell=True)
 
 		# prepare for running
 		# unpack
