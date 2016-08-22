@@ -73,11 +73,11 @@ while True:
 			os.makedirs(version_target)
 
 		print('wget --quiet --trust-server-names --content-disposition -O {} {}'.format(complete_target, version_download_url))
-		call('wget --quiet --trust-server-names --content-disposition -O {} {}'.format(complete_target, version_download_url), shell=True)
+		# call('wget --quiet --trust-server-names --content-disposition -O {} {}'.format(complete_target, version_download_url), shell=True)
 
 		# prepare for running
 		# unpack
-		call('tar -xzf {} -C {}'.format(complete_target, version_target), shell=True) # file to directory
+		# call('tar -xzf {} -C {}'.format(complete_target, version_target), shell=True) # file to directory
 
 		# move
 		extract_target = join(version_target, 'factorio')
