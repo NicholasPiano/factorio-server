@@ -1,131 +1,131 @@
 SETUP
 
-   0.000 2016-08-07 09:14:26; Factorio 0.13.15 (build 23843, linux64, headless)
-   0.000 Operating system: Linux
-   0.000 Program arguments: "/opt/factorio/0.13.15/bin/x64/factorio" "--start-server" "/opt/factorio/0.13.15/saves/nickfergus.zip"
-   0.000 Read data path: /opt/factorio/0.13.15/data
-   0.000 Write data path: /opt/factorio/0.13.15
-   0.000 Binaries path: /opt/factorio/0.13.15/bin
-   0.008 Running in headless mode
-   0.010 Loading mod core 0.0.0 (data.lua)
-   0.013 Loading mod base 0.13.15 (data.lua)
-   0.079 Checksum for core: 2228900852
-   0.079 Checksum for mod base: 2626002353
-   0.333 Info PlayerData.cpp:45: Local player-data.json available, timestamp 1470575656
-   0.333 Info PlayerData.cpp:52: Cloud player-data.json unavailable
-   0.333 Custom inputs active: 0
-   0.334 Factorio initialised
-   0.335 Info Router.cpp:558: Router peerID(65535) shutting down.
-   0.335 Info Router.cpp:594: Router state -> Disconnected
-   0.347 Info MultiplayerManager.cpp:996: networkTick(0) mapTick(-1) changing state from(Ready) to(PreparedToHostGame)
-   0.347 Info MultiplayerManager.cpp:996: networkTick(0) mapTick(-1) changing state from(PreparedToHostGame) to(CreatingGame)
-   0.347 Loading map /opt/factorio/0.13.15/saves/nickfergus.zip
-   0.363 Info Scenario.cpp:127: Map version 0.13.15-0
-   0.925 Checksum for script /opt/factorio/0.13.15/temp/currently-playing/control.lua: 900459546
-   0.941 Info PosixUDPSocket.cpp:50: Opening socket at port 34197
-   0.941 Info Router.cpp:594: Router state -> Connected
-   0.941 Info Synchronizer.cpp:56: NetworkTick(0) initialized Synchronizer local peer(0) latency(6).
-   0.941 Hosting game at port 34197, peerID 0, session magic 831
-   0.941 Info HttpSharedState.cpp:44: Downloading https://auth.factorio.com/generate-server-padlock
-   1.423 Info HttpSharedState.cpp:108: Status code: 200
-   1.423 Info AuthServerConnector.cpp:106: Obtained serverPadlock for serverHash (h9k4n1nnWZ2yMz5LKVF6zHsTrgQlCfvm) from the auth server.
-   1.423 Info MultiplayerManager.cpp:996: networkTick(0) mapTick(180011) changing state from(CreatingGame) to(InGame)
-   1.423 Info NetworkInputHandler.cpp:45: mapTick(180011) networkTick(0) initialized NetworkInputHandler local peer(0).
-   1.546 Info MultiplayerManager.cpp:1527: Received peer info for peer(0) username(<server>).
-   1.546 Info MultiplayerManager.cpp:1143: networkTick(6) mapTick(180011) received stateChanged peerID(0) oldState(Ready) newState(CreatingGame)
-   1.546 Info MultiplayerManager.cpp:1143: networkTick(6) mapTick(180011) received stateChanged peerID(0) oldState(CreatingGame) newState(InGame)
+	 0.000 2016-08-07 09:14:26; Factorio 0.13.15 (build 23843, linux64, headless)
+	 0.000 Operating system: Linux
+	 0.000 Program arguments: "/opt/factorio/0.13.15/bin/x64/factorio" "--start-server" "/opt/factorio/0.13.15/saves/nickfergus.zip"
+	 0.000 Read data path: /opt/factorio/0.13.15/data
+	 0.000 Write data path: /opt/factorio/0.13.15
+	 0.000 Binaries path: /opt/factorio/0.13.15/bin
+	 0.008 Running in headless mode
+	 0.010 Loading mod core 0.0.0 (data.lua)
+	 0.013 Loading mod base 0.13.15 (data.lua)
+	 0.079 Checksum for core: 2228900852
+	 0.079 Checksum for mod base: 2626002353
+	 0.333 Info PlayerData.cpp:45: Local player-data.json available, timestamp 1470575656
+	 0.333 Info PlayerData.cpp:52: Cloud player-data.json unavailable
+	 0.333 Custom inputs active: 0
+	 0.334 Factorio initialised
+	 0.335 Info Router.cpp:558: Router peerID(65535) shutting down.
+	 0.335 Info Router.cpp:594: Router state -> Disconnected
+	 0.347 Info MultiplayerManager.cpp:996: networkTick(0) mapTick(-1) changing state from(Ready) to(PreparedToHostGame)
+	 0.347 Info MultiplayerManager.cpp:996: networkTick(0) mapTick(-1) changing state from(PreparedToHostGame) to(CreatingGame)
+	 0.347 Loading map /opt/factorio/0.13.15/saves/nickfergus.zip
+	 0.363 Info Scenario.cpp:127: Map version 0.13.15-0
+	 0.925 Checksum for script /opt/factorio/0.13.15/temp/currently-playing/control.lua: 900459546
+	 0.941 Info PosixUDPSocket.cpp:50: Opening socket at port 34197
+	 0.941 Info Router.cpp:594: Router state -> Connected
+	 0.941 Info Synchronizer.cpp:56: NetworkTick(0) initialized Synchronizer local peer(0) latency(6).
+	 0.941 Hosting game at port 34197, peerID 0, session magic 831
+	 0.941 Info HttpSharedState.cpp:44: Downloading https://auth.factorio.com/generate-server-padlock
+	 1.423 Info HttpSharedState.cpp:108: Status code: 200
+	 1.423 Info AuthServerConnector.cpp:106: Obtained serverPadlock for serverHash (h9k4n1nnWZ2yMz5LKVF6zHsTrgQlCfvm) from the auth server.
+	 1.423 Info MultiplayerManager.cpp:996: networkTick(0) mapTick(180011) changing state from(CreatingGame) to(InGame)
+	 1.423 Info NetworkInputHandler.cpp:45: mapTick(180011) networkTick(0) initialized NetworkInputHandler local peer(0).
+	 1.546 Info MultiplayerManager.cpp:1527: Received peer info for peer(0) username(<server>).
+	 1.546 Info MultiplayerManager.cpp:1143: networkTick(6) mapTick(180011) received stateChanged peerID(0) oldState(Ready) newState(CreatingGame)
+	 1.546 Info MultiplayerManager.cpp:1143: networkTick(6) mapTick(180011) received stateChanged peerID(0) oldState(CreatingGame) newState(InGame)
 
 FIRST CONNECTION
 
-  13.199 Connection request(type(ConnectionRequest) applicationVersion(0.13.15 (build 23843, linux64, headless)) activeMods((base 0.13.15) ) hasPassword(no) connectionRequestID(30912)) from(82.11.184.184:50365)
-  13.199 Refusing connection for address(82.11.184.184:50365). User verification is required for this game.
+	13.199 Connection request(type(ConnectionRequest) applicationVersion(0.13.15 (build 23843, linux64, headless)) activeMods((base 0.13.15) ) hasPassword(no) connectionRequestID(30912)) from(82.11.184.184:50365)
+	13.199 Refusing connection for address(82.11.184.184:50365). User verification is required for this game.
 
 
-  13.863 Connection request(type(ConnectionRequest) applicationVersion(0.13.15 (build 23843, linux64, headless)) activeMods((base 0.13.15) ) hasPassword(no) connectionRequestID(61816)) from(82.11.184.184:51544)
-  13.863 Info Router.cpp:687: NetworkTick(745) replying to connectionRequest for address(82.11.184.184:51544).
+	13.863 Connection request(type(ConnectionRequest) applicationVersion(0.13.15 (build 23843, linux64, headless)) activeMods((base 0.13.15) ) hasPassword(no) connectionRequestID(61816)) from(82.11.184.184:51544)
+	13.863 Info Router.cpp:687: NetworkTick(745) replying to connectionRequest for address(82.11.184.184:51544).
 
 
-  13.968 Info Router.cpp:913: networkTick(751) adding peer(1) address(82.11.184.184:51544) sending connectionAccept(true)
-  13.968 Info Router.cpp:721: networkTick(751) sending connectionAccept to address(82.11.184.184:51544) connectionRequestID(61816) newPeerID(1)
-  13.968 Info Synchronizer.cpp:522: networkTick(751) adding peer(1) success(true).
+	13.968 Info Router.cpp:913: networkTick(751) adding peer(1) address(82.11.184.184:51544) sending connectionAccept(true)
+	13.968 Info Router.cpp:721: networkTick(751) sending connectionAccept to address(82.11.184.184:51544) connectionRequestID(61816) newPeerID(1)
+	13.968 Info Synchronizer.cpp:522: networkTick(751) adding peer(1) success(true).
 
 
-  14.093 Info MultiplayerManager.cpp:1527: Received peer info for peer(0) username(<server>).
-  14.093 Info MultiplayerManager.cpp:1143: networkTick(757) mapTick(180019) received stateChanged peerID(0) oldState(InGame) newState(InGame)
-  14.093 Info MultiplayerManager.cpp:1527: Received peer info for peer(1) username(arkaeologic).
-  14.093 Info MultiplayerManager.cpp:1143: networkTick(757) mapTick(180019) received stateChanged peerID(1) oldState(Ready) newState(Connecting)
-  14.093 Info NetworkInputHandler.cpp:524: expectedMapTick(180019) adding peer(1).
-  14.093 Info MultiplayerManager.cpp:1527: Received peer info for peer(1) username(arkaeologic).
-  14.093 Info MultiplayerManager.cpp:1143: networkTick(757) mapTick(180019) received stateChanged peerID(1) oldState(Connecting) newState(Connecting)
-  14.093 Info MultiplayerManager.cpp:1143: networkTick(757) mapTick(180019) received stateChanged peerID(1) oldState(Connecting) newState(VerifyingConnection)
+	14.093 Info MultiplayerManager.cpp:1527: Received peer info for peer(0) username(<server>).
+	14.093 Info MultiplayerManager.cpp:1143: networkTick(757) mapTick(180019) received stateChanged peerID(0) oldState(InGame) newState(InGame)
+	14.093 Info MultiplayerManager.cpp:1527: Received peer info for peer(1) username(arkaeologic).
+	14.093 Info MultiplayerManager.cpp:1143: networkTick(757) mapTick(180019) received stateChanged peerID(1) oldState(Ready) newState(Connecting)
+	14.093 Info NetworkInputHandler.cpp:524: expectedMapTick(180019) adding peer(1).
+	14.093 Info MultiplayerManager.cpp:1527: Received peer info for peer(1) username(arkaeologic).
+	14.093 Info MultiplayerManager.cpp:1143: networkTick(757) mapTick(180019) received stateChanged peerID(1) oldState(Connecting) newState(Connecting)
+	14.093 Info MultiplayerManager.cpp:1143: networkTick(757) mapTick(180019) received stateChanged peerID(1) oldState(Connecting) newState(VerifyingConnection)
 
 
-  14.320 Info MultiplayerManager.cpp:1143: networkTick(770) mapTick(180020) received stateChanged peerID(1) oldState(VerifyingConnection) newState(ConnectedWaitingForMap)
-  14.320 Info MultiplayerManager.cpp:996: networkTick(770) mapTick(180020) changing state from(InGame) to(InGameAligning)
-  14.320 Info MultiplayerManager.cpp:1818: networkTick(770) mapTick(180020) starting mapAlign
+	14.320 Info MultiplayerManager.cpp:1143: networkTick(770) mapTick(180020) received stateChanged peerID(1) oldState(VerifyingConnection) newState(ConnectedWaitingForMap)
+	14.320 Info MultiplayerManager.cpp:996: networkTick(770) mapTick(180020) changing state from(InGame) to(InGameAligning)
+	14.320 Info MultiplayerManager.cpp:1818: networkTick(770) mapTick(180020) starting mapAlign
 
 
-  14.408 Info MultiplayerManager.cpp:1143: networkTick(776) mapTick(180020) received stateChanged peerID(0) oldState(InGame) newState(InGameAligning)
-  14.408 Info MultiplayerManager.cpp:1752: networkTick(776) mapTick(180020) sending mapAlignAction
+	14.408 Info MultiplayerManager.cpp:1143: networkTick(776) mapTick(180020) received stateChanged peerID(0) oldState(InGame) newState(InGameAligning)
+	14.408 Info MultiplayerManager.cpp:1752: networkTick(776) mapTick(180020) sending mapAlignAction
 
 
-  14.512 Info MultiplayerManager.cpp:1390: networkTick(782) mapTick(180020) received MapAlignAction from peer(0), mapAlignTick(180021) appliedTickClosuresCount(0)
-  14.512 Info MultiplayerManager.cpp:1834: networkTick(783) mapTick(180020) mapAlign finished targetTick(180021) updating map and running the tasks ...
-  14.512 Info MultiplayerManager.cpp:1706: networkTick(783) mapTick(180020) peerID(0) fullStateLog: local state(InGameAligning) local peers(((peerID(0) state(InGameAligning) mapAlignTick(180021))
+	14.512 Info MultiplayerManager.cpp:1390: networkTick(782) mapTick(180020) received MapAlignAction from peer(0), mapAlignTick(180021) appliedTickClosuresCount(0)
+	14.512 Info MultiplayerManager.cpp:1834: networkTick(783) mapTick(180020) mapAlign finished targetTick(180021) updating map and running the tasks ...
+	14.512 Info MultiplayerManager.cpp:1706: networkTick(783) mapTick(180020) peerID(0) fullStateLog: local state(InGameAligning) local peers(((peerID(0) state(InGameAligning) mapAlignTick(180021))
 ((peerID(1) state(ConnectedWaitingForMap) mapAlignTick(-1))
 )
-  14.513 Info MultiplayerManager.cpp:1853: maptick(180021) crc before applying all ticks: -5394990
-  14.513 Info NetworkInputHandler.cpp:670: applyAllTickClosures: expectedMapTick(180021) lastTickApplied(180012) referenceMapTick(180021) networkTick(783)
-  14.513 Info NetworkInputHandler.cpp:694: applyAllTickClosures: applying tickClosure(tick(180013) inputActions((CheckCRCHeuristic) ) ) for peer(0)
-  14.513 Info NetworkInputHandler.cpp:694: applyAllTickClosures: applying tickClosure(tick(180014) inputActions((CheckCRCHeuristic) ) ) for peer(0)
-  14.513 Info NetworkInputHandler.cpp:694: applyAllTickClosures: applying tickClosure(tick(180015) inputActions((CheckCRCHeuristic) ) ) for peer(0)
-  14.513 Info NetworkInputHandler.cpp:694: applyAllTickClosures: applying tickClosure(tick(180016) inputActions((CheckCRCHeuristic) ) ) for peer(0)
-  14.513 Info NetworkInputHandler.cpp:694: applyAllTickClosures: applying tickClosure(tick(180017) inputActions((CheckCRCHeuristic) ) ) for peer(0)
-  14.513 Info NetworkInputHandler.cpp:694: applyAllTickClosures: applying tickClosure(tick(180018) inputActions((CheckCRCHeuristic) ) ) for peer(0)
-  14.513 Info NetworkInputHandler.cpp:694: applyAllTickClosures: applying tickClosure(tick(180019) inputActions((CheckCRCHeuristic) ) ) for peer(0)
-  14.513 Info MultiplayerManager.cpp:1861: maptick(180021) crc after applying all ticks: -5394990
-  14.513 Info MultiplayerManager.cpp:996: networkTick(783) mapTick(180021) changing state from(InGameAligning) to(InGameAligned)
-  14.513 Info MultiplayerManager.cpp:996: networkTick(783) mapTick(180021) changing state from(InGameAligned) to(InGameSavingMap)
+	14.513 Info MultiplayerManager.cpp:1853: maptick(180021) crc before applying all ticks: -5394990
+	14.513 Info NetworkInputHandler.cpp:670: applyAllTickClosures: expectedMapTick(180021) lastTickApplied(180012) referenceMapTick(180021) networkTick(783)
+	14.513 Info NetworkInputHandler.cpp:694: applyAllTickClosures: applying tickClosure(tick(180013) inputActions((CheckCRCHeuristic) ) ) for peer(0)
+	14.513 Info NetworkInputHandler.cpp:694: applyAllTickClosures: applying tickClosure(tick(180014) inputActions((CheckCRCHeuristic) ) ) for peer(0)
+	14.513 Info NetworkInputHandler.cpp:694: applyAllTickClosures: applying tickClosure(tick(180015) inputActions((CheckCRCHeuristic) ) ) for peer(0)
+	14.513 Info NetworkInputHandler.cpp:694: applyAllTickClosures: applying tickClosure(tick(180016) inputActions((CheckCRCHeuristic) ) ) for peer(0)
+	14.513 Info NetworkInputHandler.cpp:694: applyAllTickClosures: applying tickClosure(tick(180017) inputActions((CheckCRCHeuristic) ) ) for peer(0)
+	14.513 Info NetworkInputHandler.cpp:694: applyAllTickClosures: applying tickClosure(tick(180018) inputActions((CheckCRCHeuristic) ) ) for peer(0)
+	14.513 Info NetworkInputHandler.cpp:694: applyAllTickClosures: applying tickClosure(tick(180019) inputActions((CheckCRCHeuristic) ) ) for peer(0)
+	14.513 Info MultiplayerManager.cpp:1861: maptick(180021) crc after applying all ticks: -5394990
+	14.513 Info MultiplayerManager.cpp:996: networkTick(783) mapTick(180021) changing state from(InGameAligning) to(InGameAligned)
+	14.513 Info MultiplayerManager.cpp:996: networkTick(783) mapTick(180021) changing state from(InGameAligned) to(InGameSavingMap)
 
 
-  14.627 Info MultiplayerManager.cpp:1143: networkTick(789) mapTick(180021) received stateChanged peerID(0) oldState(InGameAligning) newState(InGameAligned)
-  14.627 Info MultiplayerManager.cpp:1143: networkTick(789) mapTick(180021) received stateChanged peerID(0) oldState(InGameAligned) newState(InGameSavingMap)
+	14.627 Info MultiplayerManager.cpp:1143: networkTick(789) mapTick(180021) received stateChanged peerID(0) oldState(InGameAligning) newState(InGameAligned)
+	14.627 Info MultiplayerManager.cpp:1143: networkTick(789) mapTick(180021) received stateChanged peerID(0) oldState(InGameAligned) newState(InGameSavingMap)
 
 
-  15.275 Info MultiplayerManager.cpp:996: networkTick(829) mapTick(180021) changing state from(InGameSavingMap) to(InGameSendingMap)
+	15.275 Info MultiplayerManager.cpp:996: networkTick(829) mapTick(180021) changing state from(InGameSavingMap) to(InGameSendingMap)
 
 
-  15.296 Info MultiplayerManager.cpp:1260: MapTick(180021) Serving map(/opt/factorio/0.13.15/temp/mp-download.zip) for peer(1) size(7295386) crc(488047411)
+	15.296 Info MultiplayerManager.cpp:1260: MapTick(180021) Serving map(/opt/factorio/0.13.15/temp/mp-download.zip) for peer(1) size(7295386) crc(488047411)
 
 
-  15.401 Info MultiplayerManager.cpp:1143: networkTick(835) mapTick(180021) received stateChanged peerID(0) oldState(InGameSavingMap) newState(InGameSendingMap)
+	15.401 Info MultiplayerManager.cpp:1143: networkTick(835) mapTick(180021) received stateChanged peerID(0) oldState(InGameSavingMap) newState(InGameSendingMap)
 
 
-  15.506 Info MultiplayerManager.cpp:1143: networkTick(841) mapTick(180021) received stateChanged peerID(1) oldState(ConnectedWaitingForMap) newState(ConnectedDownloadingMap)
+	15.506 Info MultiplayerManager.cpp:1143: networkTick(841) mapTick(180021) received stateChanged peerID(1) oldState(ConnectedWaitingForMap) newState(ConnectedDownloadingMap)
 
 
-  30.823 Info MultiplayerManager.cpp:1143: networkTick(1760) mapTick(180021) received stateChanged peerID(1) oldState(ConnectedDownloadingMap) newState(ConnectedLoadingMap)
-  30.823 Canceling serving for peer 1
-  30.823 Info MultiplayerManager.cpp:996: networkTick(1760) mapTick(180021) changing state from(InGameSendingMap) to(InGameWaitingForOthers)
+	30.823 Info MultiplayerManager.cpp:1143: networkTick(1760) mapTick(180021) received stateChanged peerID(1) oldState(ConnectedDownloadingMap) newState(ConnectedLoadingMap)
+	30.823 Canceling serving for peer 1
+	30.823 Info MultiplayerManager.cpp:996: networkTick(1760) mapTick(180021) changing state from(InGameSendingMap) to(InGameWaitingForOthers)
 
 
-  30.911 Info MultiplayerManager.cpp:1143: networkTick(1766) mapTick(180021) received stateChanged peerID(0) oldState(InGameSendingMap) newState(InGameWaitingForOthers)
+	30.911 Info MultiplayerManager.cpp:1143: networkTick(1766) mapTick(180021) received stateChanged peerID(0) oldState(InGameSendingMap) newState(InGameWaitingForOthers)
 
 
-  31.954 Info MultiplayerManager.cpp:1143: networkTick(1828) mapTick(180021) received stateChanged peerID(1) oldState(ConnectedLoadingMap) newState(InGameWaitingForOthers)
-  31.955 Info MultiplayerManager.cpp:1342: networkTick(1828) mapTick(180021) stopping mapAlign
-  31.955 Info MultiplayerManager.cpp:996: networkTick(1828) mapTick(180021) changing state from(InGameWaitingForOthers) to(InGame)
-  31.955 Info MultiplayerManager.cpp:1706: networkTick(1828) mapTick(180021) peerID(0) fullStateLog: local state(InGame) local peers(((peerID(0) state(InGameWaitingForOthers) mapAlignTick(-1))
+	31.954 Info MultiplayerManager.cpp:1143: networkTick(1828) mapTick(180021) received stateChanged peerID(1) oldState(ConnectedLoadingMap) newState(InGameWaitingForOthers)
+	31.955 Info MultiplayerManager.cpp:1342: networkTick(1828) mapTick(180021) stopping mapAlign
+	31.955 Info MultiplayerManager.cpp:996: networkTick(1828) mapTick(180021) changing state from(InGameWaitingForOthers) to(InGame)
+	31.955 Info MultiplayerManager.cpp:1706: networkTick(1828) mapTick(180021) peerID(0) fullStateLog: local state(InGame) local peers(((peerID(0) state(InGameWaitingForOthers) mapAlignTick(-1))
 ((peerID(1) state(InGameWaitingForOthers) mapAlignTick(-1))
 )
 
 
-  32.043 Info MultiplayerManager.cpp:1143: networkTick(1834) mapTick(180027) received stateChanged peerID(0) oldState(InGameWaitingForOthers) newState(InGame)
-  32.043 Info MultiplayerManager.cpp:1143: networkTick(1834) mapTick(180027) received stateChanged peerID(1) oldState(InGameWaitingForOthers) newState(InGame)
+	32.043 Info MultiplayerManager.cpp:1143: networkTick(1834) mapTick(180027) received stateChanged peerID(0) oldState(InGameWaitingForOthers) newState(InGame)
+	32.043 Info MultiplayerManager.cpp:1143: networkTick(1834) mapTick(180027) received stateChanged peerID(1) oldState(InGameWaitingForOthers) newState(InGame)
 
 
-  32.079 Info NetworkInputHandler.cpp:608: assigning playerIndex(0) to peer(1)
-  32.079 Info GameActionHandler.cpp:2663: MapTick(180030) processed PlayerJoinGame peerID(1) playerIndex(0) mode(connect)
+	32.079 Info NetworkInputHandler.cpp:608: assigning playerIndex(0) to peer(1)
+	32.079 Info GameActionHandler.cpp:2663: MapTick(180030) processed PlayerJoinGame peerID(1) playerIndex(0) mode(connect)
 
 
  158.696 Info MultiplayerManager.cpp:1571: Disconnect notification for peer (1)
